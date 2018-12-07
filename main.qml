@@ -63,10 +63,13 @@ ApplicationWindow {
         anchors.fill: parent
         currentIndex: tabBar.currentIndex
 
-        Page1Form {
+        SongsView {
         }
-
-        Page2Form {
+        AlbumView {
+        }
+        ArtistsView {
+        }
+        PodcastsView {
         }
     }
 
@@ -81,7 +84,22 @@ ApplicationWindow {
             text: Mdi.Icon.viewList
         }
         TabButton {
-            text: qsTr("Page 2")
+            font.family: webFont.name
+            font.pixelSize: 24
+            Material.background: Material.accent
+            text: Mdi.Icon.album
+        }
+        TabButton {
+            font.family: webFont.name
+            font.pixelSize: 24
+            Material.background: Material.accent
+            text: Mdi.Icon.account
+        }
+        TabButton {
+            font.family: webFont.name
+            font.pixelSize: 24
+            Material.background: Material.accent
+            text: Mdi.Icon.audiobook
         }
     }
 }

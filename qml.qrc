@@ -1,11 +1,14 @@
 <RCC>
     <qresource prefix="/">
         <file>main.qml</file>
-        <file>Page1Form.ui.qml</file>
-        <file>Page2Form.ui.qml</file>
         <file>main.qml</file>
         <file>qtquickcontrols2.conf</file>
         <file>icon.js</file>
         <file>materialdesignicons-webfont.ttf</file>
+        <file>ArtistsView.qml</file>
+        <file>AlbumView.qml</file>
+        <file>SongsView.qml</file>
+        <file>PodcastsView.qml</file>
+        <file>MewZikGridView.qml</file>
     </qresource>
 </RCC>
