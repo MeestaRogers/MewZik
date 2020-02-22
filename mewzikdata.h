@@ -14,11 +14,19 @@ public:
     QString album() const;
     QString genre() const;
     QString title() const;
+    QString date() const;
+    QString composer() const;
+    QString image() const;
+    QString time() const;
 private:
     QString m_artist;
     QString m_album;
     QString m_genre;
     QString m_title;
+    QString m_date;
+    QString m_composer;
+    QString m_image;
+    QString m_time;
 };
 
 class MewZikDataModel : public QAbstractListModel

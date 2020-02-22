@@ -24,6 +24,22 @@ QString MewZikDataValue::title() const
 {
     return m_title;
 }
+QString MewZikDataValue::date() const
+{
+    return m_date;
+}
+QString MewZikDataValue::composer() const
+{
+    return m_composer;
+}
+QString MewZikDataValue::image() const
+{
+    return m_image;
+}
+QString MewZikDataValue::time() const
+{
+    return m_time;
+}
 /**
  * @brief MewZikDataModel::MewZikDataModel
  * When initializing the data structure we'll have a database in theory that
