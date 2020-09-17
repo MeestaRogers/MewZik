@@ -4,12 +4,14 @@
 #include <QObject>
 #include <QAbstractListModel>
 #include <QStringList>
+#include <QDir>
 
 class MewZikDataValue
 {
 public:
-    MewZikDataValue(const QString &artist, const QString &album,
+    MewZikDataValue(const QString &path, const QString &artist, const QString &album,
                     const QString &genre, const QString &title);
+    QString path() const;
     QString artist() const;
     QString album() const;
     QString genre() const;
@@ -19,6 +21,7 @@ public:
     QString image() const;
     QString time() const;
 private:
+    QString m_path;
     QString m_artist;
     QString m_album;
     QString m_genre;
@@ -37,9 +40,15 @@ public:
         ArtistRole = Qt::UserRole + 1,
         AlbumRole,
         GenreRole,
-        TitleRole
+        TitleRole,
+        PathRole,
+        ImageRole,
+        DateRole,
+        ComposerRole,
+        TimeRole
     };
     Q_ENUMS(MewZikDataValueRoles)
+    Q_INVOKABLE QVariantMap get(int row);
     MewZikDataModel(QObject *parent = 0);
     void addRow(const MewZikDataValue &mewZikDataValue);
     void removeAllRows();
@@ -51,6 +60,7 @@ protected:
     QHash<int, QByteArray> roleNames() const;
 private:
     QList<MewZikDataValue> m_mewZikDataValues;
+    void iterateDirs(QDir dir);
 
 };
 

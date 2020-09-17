@@ -2,48 +2,63 @@ import QtQuick 2.10
 import QtQuick.Controls 2.3
 import QtQuick.Controls.Material 2.2
 import QtQuick.Layouts 1.3
+import QtGraphicalEffects 1.0
+import QtMultimedia 5.14
 
 Page {
     id: songsView
     font.pointSize: 12
+    property variant innerModel: null
     header: Item{
-        height: 24
+        height: 32
         width: parent.width
-        RowLayout{
-            spacing: 0
-            anchors.topMargin: 4
-            anchors.leftMargin: 8
-            anchors.rightMargin: 8
+        DropShadow{
             anchors.fill: parent
-            Label {
-                Layout.fillHeight: true
-                Layout.fillWidth: true
-                Layout.preferredHeight: implicitHeight
-                Layout.preferredWidth: listView.width / listView.numColumns
-                text: "title"
-            }
+            verticalOffset: 2
+            radius: 8.0
+            samples: 17
+            color: "#20000000"
+        }
+        Rectangle{
+            anchors.fill: parent
+            color: Material.background
+            RowLayout{
+                spacing: 0
+                anchors.topMargin: 10
+                anchors.leftMargin: 8
+                anchors.rightMargin: 8
+                anchors.fill: parent
 
-            Label {
-                Layout.fillHeight: true
-                Layout.fillWidth: true
-                Layout.preferredHeight: implicitHeight
-                Layout.preferredWidth: listView.width / listView.numColumns
-                text: "artist"
-            }
+                Label {
+                    Layout.fillHeight: true
+                    Layout.fillWidth: true
+                    Layout.preferredHeight: implicitHeight
+                    Layout.preferredWidth: listView.width / listView.numColumns
+                    text: "Title"
+                }
 
-            Label {
-                Layout.fillHeight: true
-                Layout.fillWidth: true
-                Layout.preferredHeight: implicitHeight
-                Layout.preferredWidth: listView.width / listView.numColumns
-                text: "album"
-            }
-            Label {
-                Layout.fillHeight: true
-                Layout.fillWidth: true
-                Layout.preferredHeight: implicitHeight
-                Layout.preferredWidth: listView.width / listView.numColumns
-                text: "genre"
+                Label {
+                    Layout.fillHeight: true
+                    Layout.fillWidth: true
+                    Layout.preferredHeight: implicitHeight
+                    Layout.preferredWidth: listView.width / listView.numColumns
+                    text: "Artist"
+                }
+
+                Label {
+                    Layout.fillHeight: true
+                    Layout.fillWidth: true
+                    Layout.preferredHeight: implicitHeight
+                    Layout.preferredWidth: listView.width / listView.numColumns
+                    text: "Album"
+                }
+                Label {
+                    Layout.fillHeight: true
+                    Layout.fillWidth: true
+                    Layout.preferredHeight: implicitHeight
+                    Layout.preferredWidth: listView.width / listView.numColumns
+                    text: "Genre"
+                }
             }
         }
     }
@@ -53,18 +68,18 @@ Page {
         highlightFollowsCurrentItem: true
         anchors.fill: parent
         currentIndex: -1
-        model: libraryModel
+        model: innerModel
         spacing: 4
         highlight: Rectangle {
             color: Qt.rgba(0.0, 0.0, 0.0, 0.2)
             radius: 0
         }
         delegate: Item{
-            height: 24
+            height: 32
             width: parent.width
             RowLayout {
                 spacing: 0
-                anchors.topMargin: 4
+                anchors.topMargin: 8
                 anchors.leftMargin: 8
                 anchors.rightMargin: 8
                 anchors.fill: parent
@@ -101,395 +116,12 @@ Page {
             }
             MouseArea{
                 anchors.fill: parent
+
                 onClicked: {
-                    if(listView.currentIndex == index)
-                        console.log("Playing current selection")
-                    else
-                        listView.currentIndex = index
+                    player.doPlay(mewZikData.get(index).path)
+                    listView.currentIndex = index
                 }
             }
-        }
-    }
-    // Bind the list model to our MewZik Data class
-    ListModel {
-        id: libraryModel
-        ListElement {
-            title: "A Masterpiece"
-            artist: "Gabriel"
-            album: "Voila"
-            genre: "Metal"
-        }
-        ListElement {
-            title: "Brilliance"
-            artist: "Jens"
-            album: "heavy heavy"
-            genre: "Metal"
-        }
-        ListElement {
-            title: "Outstanding"
-            artist: "Frederik"
-            album: "Boom Band"
-            genre: "Metal"
-        }
-        ListElement {
-            title: "A Masterpiece"
-            artist: "Gabriel"
-            album: "Voila"
-            genre: "Metal"
-        }
-        ListElement {
-            title: "Brilliance"
-            artist: "Jens"
-            album: "heavy heavy"
-            genre: "Metal"
-        }
-        ListElement {
-            title: "Outstanding"
-            artist: "Frederik"
-            album: "Boom Band"
-            genre: "Metal"
-        }
-        ListElement {
-            title: "A Masterpiece"
-            artist: "Gabriel"
-            album: "Voila"
-            genre: "Metal"
-        }
-        ListElement {
-            title: "Brilliance"
-            artist: "Jens"
-            album: "heavy heavy"
-            genre: "Metal"
-        }
-        ListElement {
-            title: "Outstanding"
-            artist: "Frederik"
-            album: "Boom Band"
-            genre: "Metal"
-        }
-        ListElement {
-            title: "A Masterpiece"
-            artist: "Gabriel"
-            album: "Voila"
-            genre: "Metal"
-        }
-        ListElement {
-            title: "Brilliance"
-            artist: "Jens"
-            album: "heavy heavy"
-            genre: "Metal"
-        }
-        ListElement {
-            title: "Outstanding"
-            artist: "Frederik"
-            album: "Boom Band"
-            genre: "Metal"
-        }
-        ListElement {
-            title: "A Masterpiece"
-            artist: "Gabriel"
-            album: "Voila"
-            genre: "Metal"
-        }
-        ListElement {
-            title: "Brilliance"
-            artist: "Jens"
-            album: "heavy heavy"
-            genre: "Metal"
-        }
-        ListElement {
-            title: "Outstanding"
-            artist: "Frederik"
-            album: "Boom Band"
-            genre: "Metal"
-        }
-        ListElement {
-            title: "A Masterpiece"
-            artist: "Gabriel"
-            album: "Voila"
-            genre: "Metal"
-        }
-        ListElement {
-            title: "Brilliance"
-            artist: "Jens"
-            album: "heavy heavy"
-            genre: "Metal"
-        }
-        ListElement {
-            title: "Outstanding"
-            artist: "Frederik"
-            album: "Boom Band"
-            genre: "Metal"
-        }
-        ListElement {
-            title: "A Masterpiece"
-            artist: "Gabriel"
-            album: "Voila"
-            genre: "Metal"
-        }
-        ListElement {
-            title: "Brilliance"
-            artist: "Jens"
-            album: "heavy heavy"
-            genre: "Metal"
-        }
-        ListElement {
-            title: "Outstanding"
-            artist: "Frederik"
-            album: "Boom Band"
-            genre: "Metal"
-        }
-        ListElement {
-            title: "A Masterpiece"
-            artist: "Gabriel"
-            album: "Voila"
-            genre: "Metal"
-        }
-        ListElement {
-            title: "Brilliance"
-            artist: "Jens"
-            album: "heavy heavy"
-            genre: "Metal"
-        }
-        ListElement {
-            title: "Outstanding"
-            artist: "Frederik"
-            album: "Boom Band"
-            genre: "Metal"
-        }
-        ListElement {
-            title: "A Masterpiece"
-            artist: "Gabriel"
-            album: "Voila"
-            genre: "Metal"
-        }
-        ListElement {
-            title: "Brilliance"
-            artist: "Jens"
-            album: "heavy heavy"
-            genre: "Metal"
-        }
-        ListElement {
-            title: "Outstanding"
-            artist: "Frederik"
-            album: "Boom Band"
-            genre: "Metal"
-        }
-        ListElement {
-            title: "A Masterpiece"
-            artist: "Gabriel"
-            album: "Voila"
-            genre: "Metal"
-        }
-        ListElement {
-            title: "Brilliance"
-            artist: "Jens"
-            album: "heavy heavy"
-            genre: "Metal"
-        }
-        ListElement {
-            title: "Outstanding"
-            artist: "Frederik"
-            album: "Boom Band"
-            genre: "Metal"
-        }
-        ListElement {
-            title: "A Masterpiece"
-            artist: "Gabriel"
-            album: "Voila"
-            genre: "Metal"
-        }
-        ListElement {
-            title: "Brilliance"
-            artist: "Jens"
-            album: "heavy heavy"
-            genre: "Metal"
-        }
-        ListElement {
-            title: "Outstanding"
-            artist: "Frederik"
-            album: "Boom Band"
-            genre: "Metal"
-        }
-        ListElement {
-            title: "A Masterpiece"
-            artist: "Gabriel"
-            album: "Voila"
-            genre: "Metal"
-        }
-        ListElement {
-            title: "Brilliance"
-            artist: "Jens"
-            album: "heavy heavy"
-            genre: "Metal"
-        }
-        ListElement {
-            title: "Outstanding"
-            artist: "Frederik"
-            album: "Boom Band"
-            genre: "Metal"
-        }
-        ListElement {
-            title: "A Masterpiece"
-            artist: "Gabriel"
-            album: "Voila"
-            genre: "Metal"
-        }
-        ListElement {
-            title: "Brilliance"
-            artist: "Jens"
-            album: "heavy heavy"
-            genre: "Metal"
-        }
-        ListElement {
-            title: "Outstanding"
-            artist: "Frederik"
-            album: "Boom Band"
-            genre: "Metal"
-        }
-        ListElement {
-            title: "A Masterpiece"
-            artist: "Gabriel"
-            album: "Voila"
-            genre: "Metal"
-        }
-        ListElement {
-            title: "Brilliance"
-            artist: "Jens"
-            album: "heavy heavy"
-            genre: "Metal"
-        }
-        ListElement {
-            title: "Outstanding"
-            artist: "Frederik"
-            album: "Boom Band"
-            genre: "Metal"
-        }
-        ListElement {
-            title: "A Masterpiece"
-            artist: "Gabriel"
-            album: "Voila"
-            genre: "Metal"
-        }
-        ListElement {
-            title: "Brilliance"
-            artist: "Jens"
-            album: "heavy heavy"
-            genre: "Metal"
-        }
-        ListElement {
-            title: "Outstanding"
-            artist: "Frederik"
-            album: "Boom Band"
-            genre: "Metal"
-        }
-        ListElement {
-            title: "A Masterpiece"
-            artist: "Gabriel"
-            album: "Voila"
-            genre: "Metal"
-        }
-        ListElement {
-            title: "Brilliance"
-            artist: "Jens"
-            album: "heavy heavy"
-            genre: "Metal"
-        }
-        ListElement {
-            title: "Outstanding"
-            artist: "Frederik"
-            album: "Boom Band"
-            genre: "Metal"
-        }
-        ListElement {
-            title: "A Masterpiece"
-            artist: "Gabriel"
-            album: "Voila"
-            genre: "Metal"
-        }
-        ListElement {
-            title: "Brilliance"
-            artist: "Jens"
-            album: "heavy heavy"
-            genre: "Metal"
-        }
-        ListElement {
-            title: "Outstanding"
-            artist: "Frederik"
-            album: "Boom Band"
-            genre: "Metal"
-        }
-        ListElement {
-            title: "A Masterpiece"
-            artist: "Gabriel"
-            album: "Voila"
-            genre: "Metal"
-        }
-        ListElement {
-            title: "Brilliance"
-            artist: "Jens"
-            album: "heavy heavy"
-            genre: "Metal"
-        }
-        ListElement {
-            title: "Outstanding"
-            artist: "Frederik"
-            album: "Boom Band"
-            genre: "Metal"
-        }
-        ListElement {
-            title: "A Masterpiece"
-            artist: "Gabriel"
-            album: "Voila"
-            genre: "Metal"
-        }
-        ListElement {
-            title: "Brilliance"
-            artist: "Jens"
-            album: "heavy heavy"
-            genre: "Metal"
-        }
-        ListElement {
-            title: "Outstanding"
-            artist: "Frederik"
-            album: "Boom Band"
-            genre: "Metal"
-        }
-        ListElement {
-            title: "A Masterpiece"
-            artist: "Gabriel"
-            album: "Voila"
-            genre: "Metal"
-        }
-        ListElement {
-            title: "Brilliance"
-            artist: "Jens"
-            album: "heavy heavy"
-            genre: "Metal"
-        }
-        ListElement {
-            title: "Outstanding"
-            artist: "Frederik"
-            album: "Boom Band"
-            genre: "Metal"
-        }
-        ListElement {
-            title: "A Masterpiece"
-            artist: "Gabriel"
-            album: "Voila"
-            genre: "Metal"
-        }
-        ListElement {
-            title: "Brilliance"
-            artist: "Jens"
-            album: "heavy heavy"
-            genre: "Metal"
-        }
-        ListElement {
-            title: "Outstanding"
-            artist: "Frederik"
-            album: "Boom Band"
-            genre: "Metal"
         }
     }
 }
